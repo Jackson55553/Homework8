@@ -1,22 +1,35 @@
 public class AppDemo{
 
     public static void main(String[] args) {
-    Cat cat = new Cat("Барсик", 100, 10);
-    Human human = new Human("Дмитрий", 500, 20);
-    Robot robot = new Robot("1212", 50, 15);
-    Wall wall = new Wall(6);
-    Track track = new Track(70);
-    cat.run(track);
-        System.out.println();
-    cat.jump(wall);
-        System.out.println();
-    human.run(track);
-        System.out.println();
-    human.jump(wall);
-        System.out.println();
-    robot.run(track);
-        System.out.println();
-    robot.jump(wall);
+       Player[] players = {
+               new Cat("Барсик", 200, 20),
+               new Human("Дмитрий", 500, 25),
+               new Robot("1212", 50, 70)};
+       Obstacles[] obstacles = {
+               new Wall(5),
+               new Track(200),
+               new Wall(15)};
+       for (Player player : players){
+           System.out.println(player.getName() + " Пробует пройти трассу");
+           boolean winner = true;
+           for (Obstacles obstacle : obstacles){
+               System.out.println(player.getName() + " Пробует пройти " + obstacle.getName());
+               if (obstacle.toJump(player.getCanJump()) || obstacle.toRun(player.getCanRun())){
+                   System.out.println(" он смог");
+               }else{
+                   winner =false;
+                   System.out.println(" не вышло");
+                   break;
+               }
+            }
+           if (winner){
+               System.out.println(player.getName() + " Прошёл все");
+           }else {
+               System.out.println(player.getName() + " Не прошел");
+           }
+           System.out.println();
+        }
     }
+
 
 }

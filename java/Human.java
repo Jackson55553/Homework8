@@ -1,4 +1,4 @@
-public class Human implements Action {
+public class Human implements Player {
     private String name;
     private int canJump;
     private int canRun;
@@ -9,22 +9,27 @@ public class Human implements Action {
         this.canJump = canJump;
     }
 
+    @Override
+    public int getCanJump() {
+        return canJump;
+    }
 
     @Override
-    public void jump(Wall wall) {
-        if (wall.getHeight() < canJump) {
-            System.out.printf("%s пробежал", name);
-        } else {
-            System.out.printf("%s не пробежал", name);
-        }
-        }
+    public void jump() {
+        System.out.println("Human jump");
+    }
 
     @Override
-    public void run(Track track) {
-        if (track.getDistance() < canRun) {
-            System.out.printf("%s пробежал", name);
-        } else {
-            System.out.printf("%s не пробежал", name);
-        }
+    public int getCanRun() {
+        return canRun;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Human run");
+    }
+
+    public String getName() {
+        return name;
     }
 }

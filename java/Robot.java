@@ -1,4 +1,4 @@
-public class Robot implements Action {
+public class Robot implements Player {
     private String id;
     private int canJump;
     private int canRun;
@@ -9,21 +9,30 @@ public class Robot implements Action {
         this.canJump = canJump;
     }
 
+
     @Override
-    public void jump(Wall wall) {
-        if (wall.getHeight() < canJump) {
-            System.out.printf("%s пробежал", id);
-        } else {
-            System.out.printf("%s не пробежал", id);
-        }
+    public int getCanJump() {
+        return canJump;
     }
 
     @Override
-    public void run(Track track) {
-        if (track.getDistance() < canRun) {
-            System.out.printf("%s пробежал", id);
-        } else {
-            System.out.printf("%s не пробежал", id);
-        }
+    public void jump() {
+        System.out.println("robot jump");
     }
+
+    @Override
+    public int getCanRun() {
+        return canRun;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("robot run");
+    }
+
+    @Override
+    public String getName() {
+        return id;
+    }
+
 }
